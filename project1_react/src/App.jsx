@@ -1,14 +1,15 @@
-import { useState } from 'react'
+
 import Teac from "./teac.jsx";
 
 
 function App() {
-
+  const lafz = 'Zameno'
   return (
-    <>
-     <p>Zameno zuman Thumary lye</p>
-        <Teac />
-    </>
+      <>
+          <p>{lafz} zuman Thumary lye</p>
+          {/*{} these curly braces are evaluated expressions */}
+          {/*<Teac/>*/}
+      </>
   )
 }
 
