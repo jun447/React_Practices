@@ -1,10 +1,14 @@
-import {useCallback, useEffect, useState} from 'react'
+import {useCallback, useEffect, useRef, useState} from 'react'
 
 function App() {
     const [length, setLength] = useState(8);
     const [isNumber, setIsNumber] = useState(false);
     const [isSymbol, setIsSymbol] = useState(false);
     const [password, setPassword] = useState('');
+
+    //useRef hook
+
+    const passwordRef = useRef(null);
 
     const passwrdGenerator = useCallback(() => {
         let chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -29,6 +33,15 @@ function App() {
         passwrdGenerator();
     }, [length,isNumber,isSymbol,passwrdGenerator]);
 
+    const copyPasswordToClipboard = useCallback(() => {
+        passwordRef.current.select();
+        // document.execCommand('copy');
+        window.navigator.clipboard.writeText(passwordRef.current.value)
+            .then(r => console.log(r) ); // window is not available in Next.js
+        console.log(passwordRef.current.value);
+
+    }, [password]);
+
     return (
         <>
 
@@ -43,12 +56,13 @@ function App() {
                         className="outline-none w-full py-1 px-3"
                         placeholder="Password"
                         readOnly={true}
-                        // ref={passwordRef}
+                        ref={passwordRef}
                     />
                     <button
-                        // onClick={copyPasswordToClipboard}
+                        onClick={copyPasswordToClipboard}
                         className='outline-none bg-gradient-to-r to-orange-500 from-green-500
-                     text-white px-3 py-0.5 shrink-0'
+                     text-white px-3 py-0.5 shrink-0 hover:from-orange-400 hover:to-green-400
+                     transition duration-800 ease-in-out'
                     >copy
                     </button>
 
@@ -61,7 +75,7 @@ function App() {
                             max={20}
                             value={length}
                             className='cursor-pointer'
-                            onChange={(e) => setLength(e.target.value)}
+                            onChange={(e) => setLength(Number(e.target.value))}
                         />
                         <label>Length: {length}</label>
                     </div>
