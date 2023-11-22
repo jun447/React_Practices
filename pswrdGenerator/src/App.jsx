@@ -38,7 +38,7 @@ function App() {
         passwordRef.current?.select();
         passwordRef.current?.setSelectionRange(0, length);
         window.navigator.clipboard.writeText(passwordRef.current.value)
-            .then(r => console.log(r) ); // window is not available in Next.js
+            // .then(r => console.log(`${r} copied`) ); // window is not available in Next.js
         console.log(passwordRef.current.value);
 
     }, [password]);
