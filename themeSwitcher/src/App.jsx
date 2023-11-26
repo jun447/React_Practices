@@ -18,25 +18,21 @@ function App() {
         document.querySelector('html').classList.add(themeMode)
     }, [themeMode]);
 
-  return (
-        <ThemeProvider value={{themeMode,lightTheme,darkTheme}}>
-        <div className="flex flex-wrap min-h-screen items-center">
-            <div className="w-full">
-                <div className="w-full max-w-sm mx-auto flex justify-end mb-4">
-                    {/* Replace with actual ThemeBtn component */}
-                    <ThemeBtn />
-                </div>
+    return (
+        <ThemeProvider value={{themeMode, lightTheme, darkTheme}}>
+            <div className="flex flex-wrap  min-h-screen items-center dark:bg-gray-900">
+                <div className="w-full border-2 bg-orange-700">
+                    <div className="w-full max-w-sm mx-auto flex justify-end mb-4">
+                        <ThemeBtn/>
+                    </div>
 
-                <div className="w-full max-w-sm mx-auto">
-                    {/* Replace with actual card component */}
-                    <Card/>
-                    <Card/>
-                    <Card/>
+                    <div className=" border-2 border-amber-50  max-w-sm mx-auto">
+                        <Card/>
+                    </div>
                 </div>
             </div>
-        </div>
         </ThemeProvider>
-  )
+    )
 }
 
 export default App
