@@ -1,6 +1,8 @@
 import './App.css'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {TodoProvider} from "./context/index.js";
+import TodoForm from "./components/TodoForm.jsx";
+import {TodoItem} from "./components/index.js";
 
 function App() {
   //   state for todos
@@ -41,6 +43,17 @@ function App() {
             ))
         ))
     }
+    // use Effect to get all todos from local storage when page loads
+    useEffect(() => {
+        const todos = JSON.parse(localStorage.getItem("todos"));
+        if (todos && todos.length > 0) {
+            setTodos(todos);
+        }
+    }, []);
+    // use Effect to save all todos to local storage when todos state changes
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }, [todos]);
 
     return (
     <TodoProvider value={{todos, toggleTodo, updateTodo, deleteTodo, addTodo}}>
@@ -49,9 +62,15 @@ function App() {
                 <h1 className="text-2xl font-bold text-center mb-8 mt-2">Manage Your Todos</h1>
                 <div className="mb-4">
                     {/* Todo form goes here */}
+                    <TodoForm/>
                 </div>
                 <div className="flex flex-wrap gap-y-3">
                     {/*Loop and Add TodoItem here */}
+                    {todos.map((todo) => (
+                        <div key={todo.id} className={'w-full'}>
+                            <TodoItem key={todo.id} todo={todo}/>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
