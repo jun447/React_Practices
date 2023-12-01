@@ -21,10 +21,21 @@ import {createSlice,nanoid} from "@reduxjs/toolkit";
          removeTodo:(state, action)=>{
              state.todos = state.todos.filter(todo => todo.id !== action.payload)
          },
-         updateTodo:(state, action)=>{
-             const index = state.todos.findIndex(todo => todo.id === action.payload.id)
-             state.todos[index].text = action.payload.text
+         updateTodo: (state, action) => {
+             const {id, text} = action.payload;
+             const index = state.todos.findIndex(todo => todo.id === id);
+             console.log(id)
+             console.log(index)
+             state.todos[index].text = text;
+
+
+
          }
+         // updateTodo:(state, action)=>{
+         //     const index = state.todos.findIndex(todo => todo.id === action.payload)
+         //     console.log(index)
+         //     state.todos[index].text = action.payload.text
+         // }
      }
  })
 // export the actions
