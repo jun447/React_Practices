@@ -25,7 +25,7 @@ import {createSlice,nanoid} from "@reduxjs/toolkit";
              const {id, text} = action.payload;
              const index = state.todos.findIndex(todo => todo.id === id);
              console.log(id)
-             console.log(index)
+             console.log('index ',index)
              state.todos[index].text = text;
 
 
