@@ -3,19 +3,19 @@ import {useSelector, useDispatch} from "react-redux";
 import {removeTodo, updateTodo} from "../feature/todo/todoSlice.js";
 // import input from "./AddTodo.jsx";
 // AddTodo
-function Todo({input}) {
+function Todo({input, author}) {
     const todos = useSelector((state) => state.todos)
     const dispatch = useDispatch()
     return (
         <>
-            <div className="text-2xl font-bold text-blue-500 mb-4">Todos</div>
+            <div className="text-2xl font-bold text-blue-500 mb-4">Books</div>
             <ul className="list-none">
                 {todos.map((todo) => (
                     <li
                         className="mt-4 flex justify-between items-center bg-zinc-800 px-4 py-2 rounded"
                         key={todo.id}
                     >
-                        <div className='text-white flex-grow'>{todo.text}</div>
+                        <div className='text-white flex-grow'>{todo.text} by {todo.author}</div>
                         <button
                             onClick={() => {
                                 dispatch(removeTodo(todo.id))
@@ -41,7 +41,7 @@ function Todo({input}) {
                             onClick={() => {
                                 console.log('id ', todo.id)
                                 console.log('This is input', input)
-                                dispatch(updateTodo({id: todo.id, text: input}))
+                                dispatch(updateTodo({id: todo.id, text: input,author:author}))
                             }}
                             className="text-white bg-orange-500 border-0 m-2 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-md flex-shrink-0"
                         >
