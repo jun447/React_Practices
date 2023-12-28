@@ -4,8 +4,9 @@ import App from './App.jsx'
 import './index.css'
 import {Provider} from "react-redux";
 import {store} from './app/store'
-import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider, Routes} from "react-router-dom";
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 import CategoriesList from "./components/CategoriesList.jsx";
+import Layout from "./Layout.jsx";
 // ReactDOM.createRoot(document.getElementById('root')).render(
 //   <React.StrictMode>
 //       <Provider store={store}>
@@ -16,6 +17,8 @@ import CategoriesList from "./components/CategoriesList.jsx";
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route
+            path={'/'}
+            element={<Layout/>}
         >
             <Route
                 path="/books" element={
