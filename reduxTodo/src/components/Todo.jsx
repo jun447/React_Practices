@@ -15,7 +15,7 @@ function Todo({input, author}) {
                         className="mt-4 flex justify-between items-center bg-zinc-800 px-4 py-2 rounded"
                         key={todo.id}
                     >
-                        <div className='text-white flex-grow'>{todo.text} by {todo.author}</div>
+                        <div className='text-white flex-grow'>{todo.text} by {todo.author} Category {todo.category}</div>
                         <button
                             onClick={() => {
                                 dispatch(removeTodo(todo.id))

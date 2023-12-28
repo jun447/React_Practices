@@ -6,15 +6,20 @@ const initialState = {
             id: 1,
             text: 'The great Gatsby',
             author: 'F. Scott Fitzgerald',
+            category: 'Novel',
         },
-        // {
-        //     id: 2,
-        //     text: 'Anna Karenina',
-        // },
-        // {
-        //     id: 3,
-        //     text: 'The selfish gene',
-        // },
+        {
+            id: 2,
+            text: 'Anna Karenina',
+            author: 'Leo Tolstoy',
+            category: 'Novel',
+        },
+        {
+            id: 3,
+            text: 'The selfish gene',
+            author: 'Richard Dawkins',
+            category: 'Science',
+        },
     ]
 }
 
@@ -28,6 +33,7 @@ export const todoSlice = createSlice({
                 id: nanoid(),
                 text: text,
                 author: author,
+                category: 'Novel',
             }
             state.todos.push(newTodo)
         },

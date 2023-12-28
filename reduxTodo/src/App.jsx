@@ -5,7 +5,7 @@ import {useState} from "react";
 
 function App() {
 
-    const [input, setInput] = useState('Todo Dal be');
+    const [input, setInput] = useState('Book Dal be');
     const [author, setAuthor] = useState('Author Dal be');
 
 
